@@ -27,7 +27,8 @@
 %\setcounter{page}{0}
 \setcounter{page}{1}
 %\title[]{Beam Tracking Simulation Study by Using a Three Dimensional Field Map for Multipole Magnets at the HEBT in the KHIMA Accelerator System}
-\title[]{Beam Tracking Simulation Study Using Three Dimensional Field Map of Multipole Magnets at the HEBT in the KHIMA Accelerator System}
+%\title[]{Beam Tracking Simulation Study Using Three Dimensional Field Map of Multipole Magnets at the HEBT in the KHIMA Accelerator System}
+\title[]{Beam Tracking Study Using Three Dimensional Field Map of Multipole Magnets at a Medical Synchrotron System}
 \author{Chawon \surname{Park}}
 \email[E-mail: ]{parknkim@kirams.re.kr}
 \author{Heejoong \surname{Yim}}
@@ -36,19 +37,19 @@
 %\thanks{Fax: +82-2-970-1332}
 \affiliation{Division of Heavy Ion Accelerator, Korea Institute of Radiological \& Medical Sciences, Seoul
   139-706}
-\date[]{Received 30 December 2016}
+%\date[]{Received 30 December 2016}
 %---------------------------------------------------------------------------------------%
 \begin{abstract}
   The Korea Heavy Ion Medical Accelerator (KHIMA) project of Korea Institute of Radiological \& Medical Sciences (KIRAMS) has been engaged in
   designing synchrotron-based ion beams treatment facilities for cancer treatment and various nonclinical scientific research.
   Designed machines can accelerate proton beams from 60 MeV to 230 MeV
   and carbon beams from 110 MeV/u to 430 MeV/u in fine energy variation steps, respectively.
-  The particle beams extracted from the Synchrotron are transferred into each treatment room via a dedicated high energy beam transport (HEBT) line.
-  The HEBT line lattice design was implemented with beam optics codes, MAD-X and WinAgile.  
+  The particle beams extracted from the Synchrotron are transferred into each treatment room via a dedicated high energy beam transport (HEBT) lines.
+  The HEBT line's lattice design was implemented with beam optics codes, MAD-X and WinAgile.  
   The beam tracking code TRACK that covers the whole HEBT line lattice is performed to confirm if the beam loss is arisen in each HEBT line.  
   In order to apply the realized multipolar magnet field into the TRACK code, a three-dimensional field map obtained by the Opera3D program was used.
   By applying a realistic field map of multipole magnets to the TRACK code in the particle beam line,  
-  the beam width for various beam energy was deformed by comparing the estimate one from optics code.
+  the beam width with respect to various beam energy was deformed by comparing the estimated one from optics code.
   In this analysis, corrections were followed to eliminate the discrepancy between the reconstructed beam width by TRACK
   and the estimated one by optical code on each dedicated beam line.
 \end{abstract}
@@ -95,8 +96,8 @@ Finally the results and conclusions are given in Sec.~\ref{sec:Con}.
 \label{sec:Lat}
 %---------------------------------------------------------------------------------------%
 Beams extracted from the synchrotron must be safely transported to the isocenter in their own treatment rooms or research room.
-To satisfy this requirement, the lattice design was confirmed with two beam optics codes, WinAgile\cite{Agile0,Agile1} and MAD-X\cite{Schmidt}.
-Meanwhile, the distorted trajectory for several reasons was corrected by the beam optical tool\cite{Chawon}.
+To satisfy this requirement, the lattice design was conducted by two different beam optics codes, WinAgile\cite{Agile0,Agile1} and MAD-X\cite{Schmidt}.
+Meanwhile, the distorted trajectory for several reasons was corrected by the beam optics tool\cite{Chawon}.
 The common module of the horizontal common (HC) line is interleaved to control the beam size at the isocenter.
 This module has important advantages for commissioning and operation. 
 The vertical beam size of transverse beam plane at the isocenter is controlled by the vertical $\beta$ function, $\beta_{y}$.  
@@ -104,7 +105,7 @@ The module can be adjusted to provide a variable value between $2 < \beta_{y} < 
 As a variable component, the module includes six successive quadrupole magnets in a common line.
 The horizontal beam size of transversal beam plane was limited by changing the phase advance as described in ref.\cite{Chawon}. 
 As the shortest of the horizontal lines (H3, H2 and H1), 
-Fig.~\ref{fig1} shows transverse envelope distribution by the horizontal H3 line to the isocenter of the third treatment room. 
+Fig.~\ref{fig1} shows the transverse envelope distribution by the horizontal H3 line to the isocenter of the third treatment room. 
 The full width at half maximum (FWHM; $\Gamma$) at the isocenter can be varied with respect to the beam energy according to treatment conditions.
 Thus, the lattice design reflects these conditions by arranging the corresponding lattice components which are bending, focusing and correcting magnets.
 %---------------------------------------------------------------------------------------%
@@ -122,11 +123,12 @@ Thus, the lattice design reflects these conditions by arranging the correspondin
 \section{Beam tracking simulation}
 \label{sec:TRACK}
 %---------------------------------------------------------------------------------------%
-%should be rephrased...
 A beam transport system such as the HEBT line is completed using a detailed beam dynamics code.
 Due to many advantages, the ray tracing code TRACK\cite{TRACK} was adopted to describe the beam dynamics of the HEBT line.
-In the beam tracking simulation by the TRACK code, firstly two different methods are used by the encoding algorithm,
-and secondly, a realistic three-dimensional field map of the electromagnet is applied.
+In the beam tracking simulation by the TRACK code, two different methods are used firstly by the encoding algorithm embedded in the program
+and secondly by the algorithm applying for the realistic field map in the electromagnets.
+%%%%
+
 
 \subsection{Encoded in TRACK Code}
 In the hard-edge model of electromagnet, the fringe field falloff of the dipole and multipole magnet elements is not included.
