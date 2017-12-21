@@ -125,24 +125,26 @@ Thus, the lattice design reflects these conditions by arranging the correspondin
 %---------------------------------------------------------------------------------------%
 A beam transport system such as the HEBT line is completed using a detailed beam dynamics code.
 Due to many advantages, the ray tracing code TRACK\cite{TRACK} was adopted to describe the beam dynamics of the HEBT line.
-In the beam tracking simulation by the TRACK code, two different methods are used firstly by the encoding algorithm embedded in the program
-and secondly by the algorithm applying for the realistic field map in the electromagnets.
+In the beam tracking simulation by the TRACK code, two different methods are used. Firstly by the encoding algorithm embedded in the code
+and secondly by the another algorithm applying for the realistic field map in the electromagnets
+via electromagnet design program such as Opera3D code are conducted.
 %%%%
 
-
-\subsection{Encoded in TRACK Code}
-In the hard-edge model of electromagnet, the fringe field falloff of the dipole and multipole magnet elements is not included.
-On the other hand, the TRACK code implements the encoded 6 parameter Enge function\cite{Enge} and describes the parasitic fringe field component.  
-The Enge function is described as\cite{EngeTrack}:
+\subsection{Encoding in TRACK Code}
+In the hard-edge model of electromagnet, the fringe field falloff of the dipole and higher multipole magnet elements is not included.
+On the other hand, the TRACK code has an option to implement the encoded 6 parameter Enge function\cite{Enge}
+and describes the parasitic fringe field component.  
+The corresponding Enge function is described as\cite{EngeTrack}:
 %\begin{equation}\label{eq:Enge}
 \[
-F(z) = \frac{1}{1+{\rm exp}(a_{0}+a_{1}(z/D)^{1}+...+a_{5}(z/D)^{5})} 
+F(z) = \frac{1}{1+{\rm exp}(a_{0}+a_{1}(z/D)^{1}+...+a_{5}(z/D)^{5})}, 
 %\end{equation}
 \]
 where $z$ is the distance along the line perpendicular to the effective bounday line and $D$ is the full air-gap of element.
-Fig.~\ref{fig2} shows the beam envelope distribution for the reference trajectory in both horizontal and vertical planes.
-As shown in the distribution diagram on the lower right side of Fig.~\ref{fig3}, FWHM $\Gamma_{y} = 2.355 \times \sigma_{y} = 6.7$~mm was obtained
-and the result by the matrix based optical code WinAgile was 9~mm.
+Fig.~\ref{fig2} shows that the arrangement of multipole magnet components in the beam line and
+the beam envelope distribution for the reference trajectory in both horizontal and vertical planes.
+As shown in the distribution diagram on Fig.~\ref{fig3}(d), FWHM $\Gamma_{y} = 2.355 \times \sigma_{y} = 6.7$~mm was obtained,
+while the result by the matrix based optical code WinAgile was 9~mm.
 Therefore, the difference between the two methods is large and needs to be considered for additional correction.
 %---------------------------------------------------------------------------------------%
 \begin{figure}[h]
@@ -180,10 +182,11 @@ Therefore, the difference between the two methods is large and needs to be consi
 \end{figure*}
 %---------------------------------------------------------------------------------------%
 Design specifications of dipole and quadrupole determined by beam optics code are realized with Opera3D code.
-Fig.~\ref{fig3-1} shows the schematic design and magnetic field distribution of two different quadrupole magnets. Here, the reason for using two different
-focusing magnets is to respect the wide range magnetic strength of each quadrupole.
-%Fig.~\ref{fig4} shows the distribution of field maps for three different bending angles 22.5 degrees, 30 degrees and 45 degrees used in the HEBT line.
-Fig.~\ref{fig4} shows the distribution of field maps for three different bending angles 22.5$^{\circ}$, 30$^{\circ}$ and 45$^{\circ}$ used in the HEBT line.
+Fig.~\ref{fig3-1} shows the schematic design and magnetic field distribution of two different quadrupole magnets.
+Here, the reason for using two different
+focusing magnets is to respect the wide ranging magnetic strength of each quadrupole.
+Fig.~\ref{fig4} shows the distribution of field map distributions
+for three different bending angles 22.5$^{\circ}$, 30$^{\circ}$ and 45$^{\circ}$ respectively used in the HEBT line.
 %---------------------------------------------------------------------------------------%
 \begin{figure}
   \begin{center}
@@ -193,14 +196,15 @@ Fig.~\ref{fig4} shows the distribution of field maps for three different bending
   \end{center}
 \end{figure}
 %---------------------------------------------------------------------------------------%
-The field map database of multipole magnets from Opera3D code was converted into ASCII text input file of TRACK code.
-In the TRACK code, two functions, three-dimensional bending and focusing magnet, are provided to read an ASCII text file.
-The particle beam is transferred via the rewritten TRACK code applied by the field map implementation.
-Fig.~\ref{fig5} shows the distribution of the particle beam envelope by applying the three-dimensional magnetic field map realized by the multipole magnet to the TRACK code.
+The extracted field map database of multipole magnets from Opera3D code was converted into ASCII text input file for TRACK code.
+In the TRACK code, two functions corresponding to three-dimensional bending and focusing magnet are provided to read an ASCII text file.
+The particle beam is transferred via the rewritten TRACK code by implenting the field map.
+Fig.~\ref{fig5} shows the distribution of the particle beam envelope by applying the three-dimensional magnetic field map
+realized by the multipole magnet to the TRACK code.
 Even if the realized field map is applied, the isocenter's FWHM value still does not match the field map expected by the beam optics code.
-Fig.~\ref{fig6} shows the discrepancy of the FWHM distribution between the reconstruction value according to the TRACK code
-and the estimate by the optics code for various carbon energies from 110 MeV/u to 430 MeV/u.   
-The main reason for disagreement was derived from the fringe field effect in each quadrupole magnet.
+Fig.~\ref{fig6} shows the discrepancy of the FWHM distribution between the reconstructed value according to the TRACK code
+and the estimated one by the optics code for various carbon energies from 110 MeV/u to 430 MeV/u.   
+The main reason for disagreement was derived from the fringe field effect in each quadrupole magnet not dipole magnet.
 %---------------------------------------------------------------------------------------%
 \begin{figure}[h]
   \begin{center}
@@ -232,13 +236,12 @@ The main reason for disagreement was derived from the fringe field effect in eac
   \end{center}
 \end{figure}
 %---------------------------------------------------------------------------------------%
-Various correction methods of the quadrupole magnets are considered to correct the mismatch,
-but the field scaling factor multiplied to the quadrupole being used is most appropriate for the H3 line.
-As an example, Fig.~\ref{fig7} shows the particle distribution projected on y plane before and after the correction.
-%Here we set $\Gamma_{y} = 4$~mm (sigma, $\sigma_{y} = \Gamma_{y}/2.355 = 0.1699$ mm) using a carbon beam with E = 110 MeV/u at the isocenter.
-%The fitted sigma ($\sigma_{y}$ = 0.1704 $\pm$ 0.0012 mm) value after correction is consistent with the value estimated by the optical code within statistical fluctuation.
+Various correction methods on the quadrupole magnets are considered to reconcile discrepancies,
+but the method of field scaling factor multiplied to each quadrupole being used is most appropriate for the H3 line.
+As an example, Fig.~\ref{fig7} shows the particle distribution projected on y plane before and after correction.
 Here we set $\Gamma_{y} = 4$~mm (sigma, $\sigma_{y} = \Gamma_{y}/2.355 = 0.170$ mm) using a carbon beam with E = 110 MeV/u at the isocenter.
-The fitted sigma ($\sigma_{y}$ = 0.170 $\pm$ 0.001 mm) value after correction is consistent with the value estimated by the optical code within statistical fluctuation.
+The fitted sigma ($\sigma_{y}$ = 0.170 $\pm$ 0.001 mm) value after correction is consistent with the value estimated
+by the optical code within statistical uncertainty.
 
 Fig.~\ref{fig8} shows the performance of particle beam width for extremely different beam energies before and after correction.
 As shown in Fig.~\ref{fig8}, the correction factor, which is inversely proportional to the ratio of the figure, in the low carbon energy beam
@@ -261,13 +264,14 @@ Thus, the transportation of the beam to the isocenter through each line works we
 
 \section{Conclusion}
 \label{sec:Con}
-The HEBT line is constructed based on a modular design that takes into account the strong asymmetry
+The design of HEBT line was conducted based on a modular design that takes into account the strong asymmetry
 between two lateral emittiances in the lateral beam direction and depends on the trapezoidal distribution of the beam in the horizontal phase space.
 The KHIMA HEBT line was originally designed using the WinAgile/Mad-X code for the whole beam transport line to each treatment room.
 Optical code based designs were modified with appropriate correction methods for various treatment conditions. 
-In order to confirm the design based on the optical code and minimize the beam loss in the transport line, tracking analysis using the TRACK code was carried out.
+In order to confirm the design based on the optical code and minimize the beam loss in the transport line,
+tracking analysis using the TRACK code was carried out.
 TPS requires an enormous amount of beam combinations and needs to be corrected appropriately.
-In the beam commissioning process, various calibrations and corrections that affect beam performance are performed.
+In the beam commissioning process, various calibrations and corrections that affect beam performance are to be conducted.
 Therefore, tracking analysis using the realized three-dimensional electromagnetic field map is very useful
 for performing correction of each electromagnetic magnet component in the beam commissioning process.
 Designed beam lines are expected to be built on the basis of optical codes and tracking codes in the near future.
